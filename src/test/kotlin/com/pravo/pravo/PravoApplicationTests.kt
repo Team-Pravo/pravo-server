@@ -1,4 +1,4 @@
-package com.pravo.Pravo
+package com.pravo.pravo
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

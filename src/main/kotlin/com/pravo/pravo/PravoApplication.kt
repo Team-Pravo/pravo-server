@@ -1,4 +1,4 @@
-package com.pravo.Pravo
+package com.pravo.pravo
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class PravoApplication
 
 fun main(args: Array<String>) {
-	runApplication<PravoApplication>(*args)
+    runApplication<PravoApplication>(*args)
 }
