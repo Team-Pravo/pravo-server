@@ -1,19 +1,19 @@
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: dev
     import: optional:application-secret.properties
 
   datasource:
-    driver-class-name: ${DB_NAME_LOCAL}
-    url: ${DB_URL_LOCAL}
-    username: ${DB_USER_LOCAL}
-    password: ${DB_PW_LOCAL}
+    driver-class-name: ${DB_NAME_DEV}
+    url: ${DB_URL_DEV}
+    username: ${DB_USER_DEV}
+    password: ${DB_PW_DEV}
 
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: ${DDL_OPTION_LOCAL}
+      ddl-auto: ${DDL_OPTION_DEV}
     properties:
       hibernate:
         format_sql: true
