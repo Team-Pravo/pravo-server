@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RestResponse<T> {
+
     private int statusCode;
     private String error;
 
