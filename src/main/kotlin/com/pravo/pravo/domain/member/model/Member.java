@@ -1,28 +1,44 @@
 package com.pravo.pravo.domain.member.model;
 
+import com.pravo.pravo.global.oauth.domain.OauthId;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
+
+import static lombok.AccessLevel.PROTECTED;
 
 @Entity
 @Table(name = "member")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = PROTECTED)
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
     private String email;
     private String password;
     private String profileImage;
 
+    @Embedded
+    private OauthId oauthId;
+
 //    private String refreshToken;
     private Instant createdAt;
     private Instant updatedAt;
+
+    public Long id() {
+        return id;
+    }
+
+    public OauthId oauthId() {
+        return oauthId;
+    }
 
     @PrePersist
     public void handleBeforeCreate() {
