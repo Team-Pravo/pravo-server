@@ -1,7 +1,6 @@
 package com.pravo.pravo.global.oauth.domain;
 
 import com.pravo.pravo.domain.member.model.Member;
-import com.pravo.pravo.global.oauth.domain.dto.MemberWithTokenDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -24,7 +23,7 @@ public class OauthMemberClientComposite {
                 ));
     }
 
-    public MemberWithTokenDTO fetch(OauthSocialType oauthSocialType, String authCode) {
+    public Member fetch(OauthSocialType oauthSocialType, String authCode) {
         return getClient(oauthSocialType).fetch(authCode);
     }
 

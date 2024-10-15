@@ -1,7 +1,6 @@
 package com.pravo.pravo.global.oauth.controller;
 
 import com.pravo.pravo.global.oauth.domain.OauthSocialType;
-import com.pravo.pravo.global.oauth.domain.dto.MemberWithTokenDTO;
 import com.pravo.pravo.global.oauth.domain.dto.ResponseLoginDTO;
 import com.pravo.pravo.global.oauth.service.OauthService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,18 +36,6 @@ public class OauthController {
             @RequestParam("code") String code
     ) {
         OauthSocialType socialType = OauthSocialType.fromName(oauthSocialType);
-        MemberWithTokenDTO memberWithToken = oauthService.login(socialType, code);
-        ResponseLoginDTO responseLoginDTO = new ResponseLoginDTO();
-        if (memberWithToken != null) {
-            ResponseLoginDTO.UserLoginInfo userLoginInfo = new ResponseLoginDTO.UserLoginInfo(
-                    memberWithToken.getMember().getId(),
-                    memberWithToken.getMember().getOauthId().oauthSocialId(),
-                    memberWithToken.getMember().getName(),
-                    memberWithToken.getMember().getProfileImage());
-            responseLoginDTO.setUserLoginInfo(userLoginInfo);
-            responseLoginDTO.setAccessToken(memberWithToken.getAccessToken());
-        }
-        log.info("responseLoginDTO: "+responseLoginDTO);
-        return ResponseEntity.ok().body(responseLoginDTO);
+        return ResponseEntity.ok().body(oauthService.login(socialType, code));
     }
 }

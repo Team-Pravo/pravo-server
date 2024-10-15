@@ -20,12 +20,4 @@ public class OauthId {
     @Enumerated(STRING)
     @Column(name = "oauth_social_type")
     private OauthSocialType oauthSocialType;
-
-    public String oauthSocialId() {
-        return oauthSocialId;
-    }
-
-    public OauthSocialType oauthSocialType() {
-        return oauthSocialType;
-    }
 }

@@ -3,7 +3,6 @@ package com.pravo.pravo.global.oauth.kakao;
 import com.pravo.pravo.domain.member.model.Member;
 import com.pravo.pravo.global.oauth.domain.OauthMemberClient;
 import com.pravo.pravo.global.oauth.domain.OauthSocialType;
-import com.pravo.pravo.global.oauth.domain.dto.MemberWithTokenDTO;
 import com.pravo.pravo.global.oauth.kakao.config.KakaoOauthConfig;
 import com.pravo.pravo.global.oauth.kakao.dto.KakaoToken;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +25,11 @@ public class KakaoMemberClient implements OauthMemberClient {
     }
 
     @Override
-    public MemberWithTokenDTO fetch(String authCode) {
+    public Member fetch(String authCode) {
         KakaoToken tokenInfo = kakaoApiClient.fetchToken(tokenRequestParams(authCode));
         KakaoMemberResponse kakaoMemberResponse =
                 kakaoApiClient.fetchMember("Bearer " + tokenInfo.accessToken());
-        Member member = kakaoMemberResponse.toDomain();
-        return new MemberWithTokenDTO(member, tokenInfo.accessToken());
+        return kakaoMemberResponse.toDomain();
     }
 
     private MultiValueMap<String, String> tokenRequestParams(String authCode) {
