@@ -19,10 +19,7 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-    private String email;
-    private String password;
     private String profileImage;
 
     @Embedded
@@ -31,14 +28,6 @@ public class Member {
 //    private String refreshToken;
     private Instant createdAt;
     private Instant updatedAt;
-
-    public Long id() {
-        return id;
-    }
-
-    public OauthId oauthId() {
-        return oauthId;
-    }
 
     @PrePersist
     public void handleBeforeCreate() {

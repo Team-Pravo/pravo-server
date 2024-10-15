@@ -14,15 +14,4 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public List<Member> fetchAllUser() {
-        return this.memberRepository.findAll();
-    }
-
-    public Member handleCreateUser(Member member) {
-        return this.memberRepository.save(member);
-    }
-
-    public Member handleGetMemberByEmail(String email) {
-        return this.memberRepository.findByEmail(email);
-    }
 }
