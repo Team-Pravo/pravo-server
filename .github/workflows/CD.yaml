@@ -18,6 +18,11 @@ jobs:
           distribution: 'corretto'
           java-version: '21'
 
+      - name: application-secret.properties 생성
+        run: |
+          cd src/main/resources
+          echo "${{ secrets.PROPERTIES }}" > ./application-secret.properties
+
       - name: Build
         run: |
           chmod +x gradlew
