@@ -1,8 +1,8 @@
 package com.pravo.pravo.domain.promise.repository;
 
 import com.pravo.pravo.domain.promise.model.Promise;
-import com.pravo.pravo.domain.promise.model.QPromise;
-import com.pravo.pravo.domain.promise.model.QPromiseRole;
+import static com.pravo.pravo.domain.promise.model.QPromise.promise;
+import static com.pravo.pravo.domain.promise.model.QPromiseRole.promiseRole;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import jakarta.persistence.EntityManager;
 import java.time.LocalDate;
@@ -19,9 +19,6 @@ public class PromiseRepositoryImpl implements PromiseRepositoryCustom {
 
     @Override
     public List<Promise> getPromisesByMemberIdAndStartedAtAndEndedAt(Long memberId, LocalDate startedAt, LocalDate endedAt) {
-        QPromise promise = QPromise.promise;
-        QPromiseRole promiseRole = QPromiseRole.promiseRole;
-
         return queryFactory
             .selectFrom(promise)
             .join(promise.promiseRoles, promiseRole)
@@ -34,14 +31,14 @@ public class PromiseRepositoryImpl implements PromiseRepositoryCustom {
     }
 
     private BooleanExpression memberIdEquals(Long memberId) {
-        return memberId != null ? QPromiseRole.promiseRole.member.id.eq(memberId) : null;
+        return memberId != null ? promiseRole.member.id.eq(memberId) : null;
     }
 
     private BooleanExpression promiseDateAfter(LocalDate startedAt) {
-        return startedAt != null ? QPromise.promise.promiseDate.goe(startedAt.atStartOfDay()) : null;
+        return startedAt != null ? promise.promiseDate.goe(startedAt.atStartOfDay()) : null;
     }
 
     private BooleanExpression promiseDateBefore(LocalDate endedAt) {
-        return endedAt != null ? QPromise.promise.promiseDate.loe(endedAt.atTime(LocalTime.MAX)) : null;
+        return endedAt != null ? promise.promiseDate.loe(endedAt.atTime(LocalTime.MAX)) : null;
     }
 }
