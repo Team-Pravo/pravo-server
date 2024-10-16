@@ -5,6 +5,5 @@ import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PromiseRepository extends JpaRepository<Promise, Long>{
- List<Promise> getPromisesByMemberIdAndStartedAtAndEndedAt(Long memberId, LocalDate startedAt, LocalDate endedAt);
+public interface PromiseRepository extends JpaRepository<Promise, Long>, PromiseRepositoryCustom{
 }

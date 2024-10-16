@@ -1,5 +1,6 @@
 package com.pravo.pravo.domain.member.model;
 
+import com.pravo.pravo.global.common.model.BaseTimeEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,11 +12,11 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "member")
-public class Member {
+public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
     private String email;
@@ -23,18 +24,6 @@ public class Member {
     private String profileImage;
 
     //    private String refreshToken;
-    private Instant createdAt;
-    private Instant updatedAt;
-
-    @PrePersist
-    public void handleBeforeCreate() {
-        this.createdAt = Instant.now();
-    }
-
-    @PreUpdate
-    public void handleBeforeUpdate() {
-        this.updatedAt = Instant.now();
-    }
 
     public String getPassword() {
         return password;

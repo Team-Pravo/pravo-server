@@ -7,8 +7,6 @@ import java.time.LocalDate
 
 @Service
 class PromiseService(private val promiseRepository: PromiseRepository) {
-    fun getPromiseById(id: Long) = promiseRepository.findById(id)
-
     fun getPromisesByMember(
         memberId: Long,
         startedAt: LocalDate?,

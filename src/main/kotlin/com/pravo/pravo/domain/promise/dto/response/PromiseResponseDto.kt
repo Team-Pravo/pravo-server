@@ -8,7 +8,7 @@ data class PromiseResponseDto(
     val id: Long,
     val name: String,
     val promiseDate: LocalDateTime,
-    val location: String,
+    val location: String?,
     val status: PromiseStatus,
 ) {
     companion object {
