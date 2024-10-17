@@ -38,6 +38,3 @@ out/
 
 ### Kotlin ###
 .kotlin
-
-### Config ###
-application-secret.properties
