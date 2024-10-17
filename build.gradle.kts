@@ -37,19 +37,34 @@ repositories {
 }
 
 dependencies {
+    // Spring Web
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    // Health Check
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // Lombok
+    compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+
+    // MySQL
     runtimeOnly("com.mysql:mysql-connector-j")
+
+    // H2
+    runtimeOnly("com.h2database:h2")
+
+    // Test & Validation
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // QueryDSL
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
     kapt("jakarta.persistence:jakarta.persistence-api")
@@ -71,4 +86,10 @@ idea {
         sourceDirs.add(kaptMain)
         generatedSourceDirs.add(kaptMain)
     }
+}
+
+ktlint {
+    ignoreFailures.set(false)
+
+    reporters { reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.JSON) }
 }
