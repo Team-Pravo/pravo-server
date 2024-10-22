@@ -16,9 +16,9 @@ interface PromiseApi {
         description = "약속 조회 성공",
         content = [
             Content(
-                schema = Schema(implementation = PromiseResponseDto::class)
-            )
-        ]
+                schema = Schema(implementation = PromiseResponseDto::class),
+            ),
+        ],
     )
     fun getPromisesByMember(
         memberId: Long,
