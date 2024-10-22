@@ -13,12 +13,14 @@ springdoc:
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
   swagger-ui:
+    path: /swagger-ui.html
+    url: /api-docs/json
     tags-sorter: alpha
+    disable-swagger-default-url: true
     operations-sorter: alpha
   api-docs:
     path: /api-docs/json
-    groups:
-      enabled: true
+    enabled: true
     cache:
       disabled: true
   show-login-endpoint: true
