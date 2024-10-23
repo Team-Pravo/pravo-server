@@ -13,17 +13,23 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.PatternMatchUtils;
 
-@Slf4j
-@RequiredArgsConstructor
+
 public class JwtAuthorizationFilter implements Filter {
 
+    private static final Logger log = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
+
     private final String[] whiteListUris = new String[]{"/login"}; //URLs do not need authorized
+
     private final JwtTokenProvider jwtTokenProvider;
+
+    public JwtAuthorizationFilter(JwtTokenProvider jwtTokenProvider) {
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -47,7 +53,7 @@ public class JwtAuthorizationFilter implements Filter {
             httpServletRequest.setAttribute("authenticatedUser", authenticateUser);
             chain.doFilter(request, response);
         } catch (JsonParseException e) {
-             log.error("JsonParseException" + e.getMessage());
+            log.error("JsonParseException" + e.getMessage());
             httpServletResponse.sendError(HttpStatus.BAD_REQUEST.value());
         } catch (MalformedJwtException | UnsupportedJwtException e) {
             log.error("JwtException" + e.getMessage());
