@@ -16,7 +16,6 @@ class PromiseController(
     private val promiseService: PromiseService,
 ) : PromiseApi {
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     override fun getPromisesByMember(
         @RequestParam memberId: Long,
         @RequestParam request: PromiseSearchDto?,
