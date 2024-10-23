@@ -7,9 +7,10 @@ import com.pravo.pravo.domain.member.repository.MemberRepository;
 import com.pravo.pravo.global.jwt.JwtTokensGenerator;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberService {
-
     private final MemberRepository memberRepository;
     private final JwtTokensGenerator jwtTokensGenerator;
 
