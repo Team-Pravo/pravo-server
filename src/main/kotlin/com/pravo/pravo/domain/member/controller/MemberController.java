@@ -1,28 +1,24 @@
 package com.pravo.pravo.domain.member.controller;
 
-import com.pravo.pravo.domain.member.model.Member;
+import com.pravo.pravo.domain.member.dto.LoginDTO;
+import com.pravo.pravo.domain.member.dto.LoginResponseDTO;
 import com.pravo.pravo.domain.member.service.MemberService;
-import java.util.List;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/")
-    // @CrossOrigin
-    public String getHomePage() {
-        return "hello";
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
-    @GetMapping("/members")
-    public ResponseEntity<List<Member>> getAllMembers() {
-        return ResponseEntity.status(HttpStatus.OK).body(this.memberService.fetchAllUser());
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> loginPage(@RequestBody LoginDTO loginDTO) {
+        return ResponseEntity.ok().body(memberService.login(loginDTO));
     }
 }

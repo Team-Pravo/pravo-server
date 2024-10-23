@@ -19,12 +19,11 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
-    private String email;
-    private String password;
     private String profileImage;
+    private String socialId;
 
     //    private String refreshToken;
     private Instant createdAt;
