@@ -12,7 +12,7 @@ class SwaggerConfig {
     @Bean
     fun openAPI(): OpenAPI {
         return OpenAPI()
-            .servers(listOf(Server().url("/api")))
+            .servers(listOf(Server().url("/")))
             .components(Components())
             .info(configurationInfo())
     }
